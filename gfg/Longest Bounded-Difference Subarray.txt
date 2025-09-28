@@ -1,0 +1,35 @@
+class Solution {
+    public ArrayList<Integer> longestSubarray(int[] arr, int x) {
+       TreeMap<Integer,Integer> min = new TreeMap<>();
+       TreeMap<Integer,Integer> max = new TreeMap<>(Collections.reverseOrder());
+       int maxlen =0;
+       int start = -1;
+       int i=0;
+       for(int j=0; j<arr.length; j++){
+           min.put(arr[j], min.getOrDefault(arr[j],0)+1);
+           max.put(arr[j], max.getOrDefault(arr[j],0)+1);
+           
+           int diff = max.firstKey() - min.firstKey();
+           while(diff>x&&i<j){
+               min.put(arr[i], min.get(arr[i])-1);
+               max.put(arr[i], max.get(arr[i])-1);
+               if(min.get(arr[i])==0){
+                   min.remove(arr[i]);
+                   max.remove(arr[i]);
+               }
+               i++;
+               diff = max.firstKey() - min.firstKey();
+           }
+               int len = j-i+1;
+               if(maxlen<len){
+                   start = i;
+                   maxlen = len;
+               }
+       }
+       ArrayList<Integer> res = new ArrayList<>();
+       for(i = start; i<start+maxlen; i++){
+           res.add(arr[i]);
+       }
+        return res;
+    }
+}
