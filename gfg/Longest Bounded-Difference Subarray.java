@@ -1,3 +1,7 @@
+import java.util.TreeMap;
+import java.util.ArrayList;
+import java.util.Collections;
+
 class Solution {
     public ArrayList<Integer> longestSubarray(int[] arr, int x) {
        TreeMap<Integer,Integer> min = new TreeMap<>();
