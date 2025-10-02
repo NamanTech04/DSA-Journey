@@ -32,6 +32,7 @@ class Solution {
     }
 
     // Function to return all unique permutations
+    @SuppressWarnings("unused")
     static ArrayList<ArrayList<Integer>> uniquePerms(int[] arr) {
 
         // Sort the array to handle duplicates
