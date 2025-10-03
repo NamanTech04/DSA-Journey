@@ -1,37 +1,46 @@
-import java.util.*;
-
 class Solution {
-    private static final String[] KEYPAD = {
-        "",    // 0
-        "",    // 1
-        "abc", // 2
-        "def", // 3
-        "ghi", // 4
-        "jkl", // 5
-        "mno", // 6
-        "pqrs",// 7
-        "tuv", // 8
-        "wxyz" // 9
-    };
-
-    public ArrayList<String> possibleWords(int[] arr) {
-        ArrayList<String> result = new ArrayList<>();
-        if (arr == null || arr.length == 0) return result;
-        backtrack(arr, 0, new StringBuilder(), result);
-        return result;
-    }
-
-    private void backtrack(int[] arr, int index, StringBuilder sb, ArrayList<String> result) {
+    static void possibleWordsRec(int[] arr, int index, StringBuilder prefix,
+                                 String[] padMap, ArrayList<String> res) {
         if (index == arr.length) {
-            result.add(sb.toString());
+            res.add(prefix.toString());
+            return;
+        }
+        int digit = arr[index];
+
+        // Skip invalid digits
+        if (digit < 2 || digit > 9) {
+            possibleWordsRec(arr, index + 1, prefix, padMap, res);
             return;
         }
 
-        String letters = KEYPAD[arr[index]];
-        for (char c : letters.toCharArray()) {
-            sb.append(c);
-            backtrack(arr, index + 1, sb, result);
-            sb.deleteCharAt(sb.length() - 1);
+        // Place all possible letters for this digit
+        for (char ch : padMap[digit].toCharArray()) {
+            prefix.append(ch);
+            possibleWordsRec(arr, index + 1, prefix, padMap, res);
+
+            // Backtracking to previous state
+            prefix.deleteCharAt(prefix.length() - 1);
+        }
+    }
+
+    // Function to find all possible letter combinations
+    static ArrayList<String> possibleWords(int[] arr) {
+        ArrayList<String> res = new ArrayList<>();
+
+        // mapping numbers with letters
+        String[] padMap = {"", "", "abc", "def", "ghi", "jkl",
+                           "mno", "pqrs", "tuv", "wxyz"};
+        StringBuilder prefix = new StringBuilder();
+
+        possibleWordsRec(arr, 0, prefix, padMap, res);
+        return res;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {7, 8};
+        ArrayList<String> words = possibleWords(arr);
+        for (String word : words) {
+            System.out.print(word + " ");
         }
     }
 }
