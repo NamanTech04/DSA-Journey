@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 class Solution {
     static void possibleWordsRec(int[] arr, int index, StringBuilder prefix,
                                  String[] padMap, ArrayList<String> res) {
