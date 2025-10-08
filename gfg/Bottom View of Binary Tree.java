@@ -11,6 +11,7 @@ class Node {
     Node left;
     Node right;
 
+    @SuppressWarnings("unused")
     Node(int data) {
         this.data = data;
         this.left = null;
