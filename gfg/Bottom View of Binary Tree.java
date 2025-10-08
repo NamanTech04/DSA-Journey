@@ -6,10 +6,16 @@ import java.util.TreeMap;
 // import org.w3c.dom.Node; // Removed incorrect import
 
 class Node {
+
     int data;
     Node left;
     Node right;
 
+    Node(int data) {
+        this.data = data;
+        this.left = null;
+        this.right = null;
+    }
 }
 
 class Solution {
