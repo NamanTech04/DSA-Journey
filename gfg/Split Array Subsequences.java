@@ -1,21 +1,19 @@
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 class Solution {
 
+    @SuppressWarnings("unused")
     static boolean isPossible(int[] arr, int k) {
 
         // Min-heap stores pairs: {number, length of 
         //subsequence ending with this number}
-        PriorityQueue<int[]> pq = new PriorityQueue<>(new Comparator<int[]>() {
-            public int compare(int[] a, int[] b) {
-                if(a[0] == b[0]) 
-                    // smaller length has higher priority
-                    return a[1] - b[1]; 
-                // smaller number has higher priority
-                return a[0] - b[0];       
-            }
+        PriorityQueue<int[]> pq = new PriorityQueue<>((int[] a, int[] b) -> {
+            if(a[0] == b[0])
+                // smaller length has higher priority
+                return a[1] - b[1];
+            // smaller number has higher priority
+            return a[0] - b[0];
         });
 
         int i = 0;
