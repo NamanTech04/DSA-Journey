@@ -6,7 +6,6 @@ class Solution {
         // code here
         int n = arr.length;
         double sum = 0;
-        double half = 0;
         int count = 0;
         PriorityQueue<Double> maxheap = new PriorityQueue<>(Collections.reverseOrder());
         
@@ -15,7 +14,7 @@ class Solution {
             maxheap.offer((double)arr[i]);
         }
         
-        half = sum/2.0;
+        double half = sum/2.0;
         
         while(sum > half) {
             double num = maxheap.poll();
