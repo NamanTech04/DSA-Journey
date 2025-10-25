@@ -1,8 +1,8 @@
 class Solution {
-    @SuppressWarnings("FieldMayBeFinal") //ignore
-    private int[] digitCount = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    @SuppressWarnings("FieldMayBeFinal") //ignore    private int[] digitCount = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
     private int backtrack(int n, int curr, int count) {
+        int[] digitCount = null;
         if (count == 0) {
             for (int digit = 1; digit <= 9; digit++) {
                 if (digitCount[digit] != 0 && digitCount[digit] != digit) {
