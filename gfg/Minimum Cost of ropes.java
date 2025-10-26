@@ -5,7 +5,6 @@ class Solution {
     public static int minCost(int[] arr) {
         // code here
         int n = arr.length;
-        int sum = 0;
         int ans = 0;
         PriorityQueue<Integer> minheap = new PriorityQueue<>();
         
@@ -17,7 +16,7 @@ class Solution {
             int smallest = minheap.poll();
             int smallest2 = minheap.poll();
             
-            sum = smallest + smallest2;
+            int sum = smallest + smallest2;
             ans += sum;
             minheap.offer(sum);
             
